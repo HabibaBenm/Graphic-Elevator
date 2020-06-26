@@ -21,9 +21,14 @@ PersonList* insert(Person *p, PersonList *list){
 
 PersonList* exitElevator(Elevator *e){
     PersonList* res = (PersonList*) malloc(sizeof(PersonList));
-    if res
-
-
+    if (res->person->dest==e->currentFloor){
+        res->person= res->next;
+        exitElevator(e);
+        return res;
+    }
+    else {
+        return res;
+    }
 }
 
 PersonList* enterElevator(Elevator *e, PersonList *list){
