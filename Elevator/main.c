@@ -56,13 +56,12 @@ void DisplayBuilding(WINDOW *win, Building *b) {
   }
 }
 
-
 int main() {
   srand(time(NULL));   // should only be called once
 
   // generate list of waiting persons
   int nbFloor = 5;
-PersonList **waitingLists = malloc(nbFloor*sizeof(PersonList*));
+  PersonList **waitingLists = malloc(nbFloor*sizeof(PersonList*));
   for(int currentFloor=0; currentFloor < nbFloor; currentFloor++) {
     waitingLists[currentFloor] = NULL;
     int nbPerson = 5; // 5 persons in the waiting list
@@ -96,17 +95,18 @@ PersonList **waitingLists = malloc(nbFloor*sizeof(PersonList*));
     } else {
       int level = input - '0';
       if(0 <= level && level < nbFloor) {
-	building->elevator->targetFloor = level;
+	      building->elevator->targetFloor = level;
       }
     }
-
+    // mvwprintw(win, 25 , 25,input);
     // Update state machine of elevator !!!!
 
+    //mvwprintw(win, 25 , 25, "hello");
     stepElevator(building);
 
     wclear(win);   // clear display area
     box(win, 0,0); // display border of window
-
+    printw("hellloooos");
     DisplayBuilding(win, building);
 
     wrefresh(win); // actual display function
@@ -117,5 +117,4 @@ PersonList **waitingLists = malloc(nbFloor*sizeof(PersonList*));
 
   return 0;
 }
-
 
